@@ -1,14 +1,22 @@
-import 'package:examples/screens/home/home_page.dart';
+import 'package:examples/screens/animations/anim_page.dart';
+import 'package:examples/screens/expansion/main.dart';
+import 'package:examples/screens/get/main.dart';
+import 'package:examples/screens/notification/notification_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  await NotificationService().init();
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home:  ExpansionTilePage(),
     );
   }
 }
